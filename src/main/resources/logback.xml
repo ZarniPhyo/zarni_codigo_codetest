@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOG_PATH" value="${catalina.base}/logs/zarnicms" />
+
+	<appender name="all_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/All_Log.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}.%M - %n--%n %msg%n
+			</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/archived/All/All_Log_%d{yyyy-MM-dd} %i.log.gz</fileNamePattern>
+			<maxFileSize>500MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>5000MB</totalSizeCap>
+			<!-- 5GB -->
+		</rollingPolicy>
+	</appender>
+
+	<appender name="ERR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/ERR_LOG.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss.SSS} [ %-5level %logger{36}.%M - %n--%n %msg ] %n
+			</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/archived/Error/ERR_LOG_%d{yyyy-MM-dd} %i.log.gz</fileNamePattern>
+			<maxFileSize>500MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>5000MB</totalSizeCap>
+			<!-- 5GB -->
+		</rollingPolicy>
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%msg%n        %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}.%M%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- -->
+	<root level="ERROR">
+		<appender-ref ref="STDOUT" />
+	</root>
+	
+	<logger name="com.codigo.zarnicms" level="INFO" /> 
+	
+</configuration>

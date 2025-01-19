@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "6874ad94-5481-4f3c-8253-7517ed57351f",
+		"name": "ZarniCMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41189896"
+	},
+	"item": [
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}/test",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"zarni\",\r\n    \"password\" : \"zarnizarni\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_HOST}}/authenticate",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refreshToken",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}/refreshToken",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"refreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-cms/createVoucher",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"VOUCHER FOR YOU\",\r\n  \"description\": \"This is a sample description for the voucher.\",\r\n  \"expiryDate\": \"2025-02-01T23:59:59\", \r\n  \"amount\": 1,\r\n  \"buyLimit\": 15000,\r\n  \"giftLimit\": 15000,\r\n  \"active\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_HOST}}/voucher-cms/createVoucher",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-cms",
+						"createVoucher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-cms/editVoucher",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 3,\r\n  \"title\": \"3 UPDATED VOUCHER FOR YOU\",\r\n  \"description\": \"This is a sample description for the voucher.\",\r\n  \"expiryDate\": \"2025-02-01T23:59:59\", \r\n  \"amount\": 200,\r\n  \"buyLimit\": 7,\r\n  \"giftLimit\": 8,\r\n  \"active\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_HOST}}/voucher-cms/editVoucher",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-cms",
+						"editVoucher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-cms/inactiveVoucher",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/zarni/OneDrive/Pictures/Chinese Class/01.png",
+							"disabled": true
+						},
+						{
+							"key": "data",
+							"value": "{\n  \"id\": 302,\n  \"title\": \"Sample Voucher Title updated\",\n  \"description\": \"This is a sample description for the voucher.\",\n  \"expiryDate\": \"2025-02-01T23:59:59\", \n  \"amount\": 100,\n  \"paymentMethod\": {\n    \"id\": 1,\n    \"name\": \"VISACC\",\n    \"discount\": 100\n  }, \n  \"quantity\": 5,\n  \"voucherType\": \"OnlyMeUsage\", \n  \"name\": \"John Doe\",\n  \"phoneNumber\": \"123-456-7890\",\n  \"buyLimit\": 5,\n  \"giftLimit\": 0,\n  \"active\": false\n}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_HOST}}/voucher-cms/inactiveVoucher?voucherId=3",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-cms",
+						"inactiveVoucher"
+					],
+					"query": [
+						{
+							"key": "voucherId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-estore/returnVoucherList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}/voucher-estore/returnVoucherList",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-estore",
+						"returnVoucherList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-estore/returnVoucherDetail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{API_HOST}}/voucher-estore/returnVoucherDetail?voucherId=4",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-estore",
+						"returnVoucherDetail"
+					],
+					"query": [
+						{
+							"key": "voucherId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-estore/showPaymentMethodList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}/voucher-estore/showPaymentMethodList",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-estore",
+						"showPaymentMethodList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-estore/checkOutVoucher",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"voucherId\" : 4,\r\n  \"quantity\" : 1500,\r\n\r\n  \"voucherType\" :  \"GiftToOthers\",\r\n  \"name\" : \"Smith1\",\r\n  \"phoneNumber\" : \"+1234567890\",\r\n\r\n  \"stripePaymentMethodId\" : \"pm_card_visa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_HOST}}/voucher-estore/checkOutVoucher",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-estore",
+						"checkOutVoucher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-estore/makePayment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"voucherBoughtId\": 8,\r\n    \"stripeToken\": \"tok_visa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_HOST}}/voucher-estore/makePayment",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-estore",
+						"makePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-estore/verifyPromoCode",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}/voucher-estore/verifyPromoCode",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-estore",
+						"verifyPromoCode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voucher-estore/purchaseHistory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"voucherBoughtId\": 1,\r\n    \"stripeToken\": \"tok_visa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_HOST}}/voucher-estore/purchaseHistory?phoneNumber=%2B1234567890",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"path": [
+						"voucher-estore",
+						"purchaseHistory"
+					],
+					"query": [
+						{
+							"key": "phoneNumber",
+							"value": "%2B1234567890"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
